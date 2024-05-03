@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brewery</title>
+</head>
+<body th:object="${brewery}">
+    <h1 th:text="*{name}"></h1>
+    <button onclick="history.back()">Go Back</button>
+    <br>
+    <tr>
+        <td th:text="*{description}"></td>
+    </tr>
+        <form method="post" th:action="@{/brewery/{brid}/order(brid=*{breweryId})}">
+            <button type="submit">Place order</button>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+                    <th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="b: ${brewery.beers}" data-th-object="${b}">
+					<td>
+						<span data-th-text="*{beerName}"></span> 
+					</td>
+                    <td>
+                        <span data-th-text="*{beerDescription}"></span>
+                    </td>
+					<td>
+                        <label for="quantity"></label>
+                        <input type="text" name="quantity">
+					</td>
+                    <td>
+                        <input type="hidden" name="beerId" id="beerId" th:value="*{beerId}">
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+    </form>
+</body>
+</html>

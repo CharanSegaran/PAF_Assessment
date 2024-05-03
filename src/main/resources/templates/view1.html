@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Description of Beers</title>
+</head>
+<body>
+    <h1 th:text="${styleName}"></h1>
+    <button onclick="history.back()">Go Back</button>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>Beer Name</th>
+					<th>Description</th>
+                    <th>Brewery Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="b: ${beers}" data-th-object="${b}">
+					<td>
+						<span data-th-text="*{beerName}"></span> 
+					</td>
+                    <td>
+                        <span data-th-text="*{beerDescription}"></span>
+                    </td>
+					<td>
+						<a data-th-href="@{/brewery/{bid}?breweryName={breweryName}(bid=*{breweryId}, breweryName=*{breweryName})}">
+							<span data-th-text="*{breweryName}"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+</body>
+</html>
